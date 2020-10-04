@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Point_1.wav-80135231ddb471c44d4b43ebf6e88eb4.sample"
+path="res://.import/Point_1.wav-e96688c159cc222bcbe4ef5f7cb3bc72.sample"
 
 [deps]
 
-source_file="res://Point_1.wav"
-dest_files=[ "res://.import/Point_1.wav-80135231ddb471c44d4b43ebf6e88eb4.sample" ]
+source_file="res://Assets/Point_1.wav"
+dest_files=[ "res://.import/Point_1.wav-e96688c159cc222bcbe4ef5f7cb3bc72.sample" ]
 
 [params]
 

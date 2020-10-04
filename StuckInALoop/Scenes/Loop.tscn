@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Loop.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Loop.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Ring_Sprite_Full4.png" type="Texture" id=2]
+
 
 [node name="Loop" type="Node2D"]
 script = ExtResource( 1 )

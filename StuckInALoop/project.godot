@@ -20,7 +20,7 @@ run/main_scene="res://Scenes/Main.tscn"
 
 [autoload]
 
-global="*res://Global.tscn"
+global="*res://Scenes/Global.tscn"
 
 [display]
 
@@ -43,8 +43,13 @@ CounterClockwise={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
  ]
 }
+Mute={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [rendering]
 
 quality/driver/driver_name="GLES2"
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://Assets/default_env.tres"

@@ -3,7 +3,7 @@ extends Node2D
 var is_main = true
 var spawned_main_gap = false
 var is_playing = false
-
+var mute = false
 export var score = 0
 var delta_time = 0
 var time_threshold = 3
@@ -36,20 +36,27 @@ func _startGame():
 	spawn_count = 0
 	white_list = [0,1,2,3,4,5]
 	delta_time = 0
-	
 	for n in $Gaps.get_children():
 		$Gaps.remove_child(n)
 		n.queue_free()
 		
 	$UI/Score.text = String(score)
 	$GameOver.visible = false
-	#$Title.visible = false
+	$Title.visible = false
 	$Start.visible = false
-	#$UI.visible = true
+	$UI.visible = true
 	get_tree().paused = false
 	is_playing = true
 	
 func _process(delta):
+	
+	if(Input.get_action_strength("Mute") > 0):
+		if(mute == false):
+			mute = true
+			AudioServer.set_bus_mute(0,true)
+		else:
+			mute = false
+			AudioServer.set_bus_mute(0,false)
 	delta_time += delta
 	if(white_list.size() > 0):
 		if(is_main == false && is_playing == true):
