@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Gap.gd" type="Script" id=1]
+[ext_resource path="res://Assets/GAP_SMALL_1.png" type="Texture" id=2]
+[ext_resource path="res://Up_1.wav" type="AudioStream" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Fade"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.3, 1.3, 1.3, 1 ), Color( 1.30196, 1.30196, 1.30196, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Fade_In"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.30196, 1.30196, 1.30196, 0 ), Color( 1.3, 1.3, 1.3, 1 ) ]
+}
+
+[node name="Gap" type="Node2D" groups=[
+"Main",
+]]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1.3, 1.3, 1.3, 1 )
+light_mask = 2
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2147483649
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( -2.5, -338.5 )
+polygon = PoolVector2Array( -90.284, 16.9441, -74.5943, 10.4212, 19.6436, 3.4512, 95.442, 16.1504, 111.713, -37.0275, 36.3112, -51.3141, -39.7587, -51.384, -107.972, -37.6835 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Fade_In"
+anims/Fade = SubResource( 1 )
+anims/Fade_In = SubResource( 2 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+attenuation = 0.129408
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

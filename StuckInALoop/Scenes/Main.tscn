@@ -1,0 +1,188 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Loop.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Background_5.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/WorldEnv.tres" type="Environment" id=5]
+[ext_resource path="res://Scenes/Particles.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/MiriamLibre-Bold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Point_1.wav" type="AudioStream" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.588235 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 100
+font_data = ExtResource( 7 )
+
+[node name="Main" type="Node2D"]
+position = Vector2( 500, 500 )
+script = ExtResource( 3 )
+
+[node name="PointsSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
+
+[node name="Loop" parent="." instance=ExtResource( 2 )]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+light_mask = 0
+rotation = 1.74846e-07
+z_index = 1
+
+[node name="Gaps" type="Node2D" parent="."]
+
+[node name="Particles" parent="." instance=ExtResource( 6 )]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 498.811, 497.622 )
+texture = ExtResource( 4 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = -258.068
+margin_top = -177.795
+margin_right = 286.932
+margin_bottom = -45.7953
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.588235 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+text = "It is a Loop"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="Label" parent="."]
+margin_left = -318.857
+margin_top = -443.719
+margin_right = 558.143
+margin_bottom = -311.719
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.588235 )
+text = "Movement: Right/Left Arrows or A/D"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help2" type="Label" parent="."]
+margin_left = -264.669
+margin_top = 115.36
+margin_right = 612.331
+margin_bottom = 247.36
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.588235 )
+text = "Move onto these to earn points...
+If you let ANY expire GAME OVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="."]
+visible = false
+margin_left = -200.0
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 200.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="HBoxContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -496.598
+margin_top = -500.321
+margin_right = 502.402
+margin_bottom = 497.679
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="UI"]
+margin_left = 414.0
+margin_top = 433.0
+margin_right = 584.0
+margin_bottom = 565.0
+custom_fonts/font = SubResource( 1 )
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Popup" parent="."]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameOver"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -200.0
+margin_right = 300.0
+margin_bottom = 2.99998
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.603922, 0.192157, 0.192157, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.588235 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+text = "Game Over"
+align = 1
+
+[node name="NewGame" type="Button" parent="GameOver"]
+margin_left = -200.0
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 200.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_up" from="Start" to="." method="_on_Start_button_up"]
+[connection signal="button_up" from="GameOver/NewGame" to="." method="_on_Start_button_up"]
